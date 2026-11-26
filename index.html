@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>찰스(Charles) 포트폴리오 | 솔담대학교 경영정보학과</title>
+<meta name="description" content="솔담대학교 경영정보학과 찰스의 데이터 분석 포트폴리오. 분류·회귀·시계열 예측 프로젝트 3건, 역량, 활동 기록, 연락처를 담았습니다. 모든 이력은 가상입니다.">
+<style>
+/* ===== Design tokens ===== */
+:root{
+  --cream:#FBF5E9;
+  --cream-2:#F4EAD6;
+  --paper:#FFFDF7;
+  --green-950:#0C231A;
+  --green-900:#123024;
+  --green-800:#173D2C;
+  --green-700:#1F4D38;
+  --green-600:#2A6A4D;
+  --green-500:#3C8A63;
+  --mint:#BFE3CE;
+  --mint-2:#E4F1E7;
+  --accent:#C08536;
+  --accent-soft:#F6E6CC;
+  --ink:#16241D;
+  --muted:#5D7268;
+  --line:rgba(23,61,44,.14);
+  --line-strong:rgba(23,61,44,.28);
+  --radius:20px;
+  --radius-sm:12px;
+  --shadow-1:0 1px 2px rgba(18,48,36,.06), 0 8px 24px rgba(18,48,36,.07);
+  --shadow-2:0 20px 44px rgba(18,48,36,.15);
+  --maxw:1120px;
+  --font-body:-apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-display:Georgia, "AppleMyungjo", "Nanum Myeongjo", "Batang", "Songti SC", serif;
+  --font-mono:"SF Mono", Menlo, Consolas, "Courier New", monospace;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:
+    radial-gradient(1200px 600px at 12% -8%, #FFFDF6 0%, rgba(255,253,246,0) 60%),
+    radial-gradient(900px 520px at 96% 6%, #E9F3EB 0%, rgba(233,243,235,0) 62%),
+    linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+body.no-scroll{overflow:hidden;}
+img{max-width:100%;display:block;}
+a{color:var(--green-700);text-decoration:none;}
+a:hover{text-decoration:underline;}
+h1,h2,h3,h4{font-family:var(--font-display);color:var(--green-900);margin:0;line-height:1.25;letter-spacing:-.01em;}
+p{margin:0;}
+ul{margin:0;padding:0;list-style:none;}
+button{font:inherit;cursor:pointer;}
+:focus-visible{outline:3px solid var(--green-600);outline-offset:3px;border-radius:8px;}
+
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--green-800);color:#fff;padding:10px 16px;border-radius:0 0 10px 0;z-index:200;}
+.skip-link:focus{left:0;}
+
+/* ===== Header / menu ===== */
+.site-header{
+  position:sticky;top:0;z-index:80;
+  background:rgba(251,245,233,.88);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px;}
+.brand{display:flex;align-items:baseline;gap:9px;font-family:var(--font-display);font-size:19px;font-weight:700;color:var(--green-900);letter-spacing:.04em;}
+.brand span{font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:.22em;color:var(--muted);}
+.nav ul{display:flex;gap:6px;align-items:center;}
+.nav a{
+  display:block;padding:9px 14px;border-radius:999px;
+  font-size:15px;font-weight:600;color:var(--green-800);
+  transition:background-color .18s ease, color .18s ease;
+}
+.nav a:hover{background:var(--mint-2);text-decoration:none;}
+.nav a.is-active{background:var(--green-800);color:#FFFDF6;}
+.menu-toggle{
+  display:none;border:1px solid var(--line-strong);background:var(--paper);color:var(--green-900);
+  padding:9px 16px;border-radius:999px;font-size:15px;font-weight:700;
+}
+.menu-toggle:hover{background:var(--mint-2);}
+
+/* ===== Hero ===== */
+.hero{padding:56px 22px 30px;}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:44px;align-items:center;}
+.eyebrow{
+  display:inline-block;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--green-600);background:var(--mint-2);border:1px solid rgba(42,106,77,.18);
+  padding:6px 13px;border-radius:999px;margin-bottom:20px;
+}
+.hero h1{font-size:38px;font-weight:700;margin-bottom:18px;}
+.hero h1 em{font-style:normal;color:var(--green-600);border-bottom:4px solid var(--mint);}
+.lead{font-size:16px;color:var(--muted);line-height:1.75;max-width:44ch;margin-bottom:10px;}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:22px 0 24px;}
+.facts li{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-sm);
+  padding:11px 14px;font-size:14px;color:var(--muted);box-shadow:var(--shadow-1);
+}
+.facts li b{display:block;font-size:15px;color:var(--green-900);font-weight:700;}
+.cta{display:flex;flex-wrap:wrap;gap:12px;}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 22px;border-radius:999px;font-size:15px;font-weight:700;
+  border:1px solid transparent;transition:transform .16s ease, background-color .16s ease, box-shadow .16s ease;
+}
+.btn:hover{text-decoration:none;}
+.btn-primary{background:var(--green-800);color:#FFFDF6;box-shadow:var(--shadow-1);}
+.btn-primary:hover{background:var(--green-700);transform:translateY(-1px);}
+.btn-ghost{background:var(--paper);color:var(--green-800);border-color:var(--line-strong);}
+.btn-ghost:hover{background:var(--mint-2);transform:translateY(-1px);}
+.btn-detail{
+  background:var(--accent-soft);color:#7A5218;border-color:rgba(192,133,54,.38);
+  padding:10px 18px;font-size:14px;
+}
+.btn-detail:hover{background:#F0D9B2;transform:translateY(-1px);}
+
+/* ===== Illustration ===== */
+.hero-visual{position:relative;perspective:900px;}
+.scene-motion{
+  will-change:transform;
+  transform:translate3d(0,0,0);
+  transform-style:preserve-3d;
+  filter:drop-shadow(0 22px 34px rgba(18,48,36,.14));
+}
+.scene-motion svg{width:100%;height:auto;display:block;}
+.scene-caption{
+  margin-top:14px;font-size:13px;line-height:1.7;color:var(--muted);
+  background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--mint);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 15px;
+}
+.scene-caption b{color:var(--green-800);font-weight:700;}
+
+/* ===== Motion toggle ===== */
+.motion-toggle{
+  position:fixed;right:18px;bottom:18px;z-index:90;
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--green-800);color:#FFFDF6;border:none;
+  padding:11px 18px;border-radius:999px;font-size:14px;font-weight:700;
+  box-shadow:var(--shadow-2);
+}
+.motion-toggle:hover{background:var(--green-700);}
+.motion-toggle .dot{width:9px;height:9px;border-radius:50%;background:var(--mint);}
+.motion-toggle[aria-pressed="true"]{background:var(--paper);color:var(--green-800);border:1px solid var(--line-strong);}
+.motion-toggle[aria-pressed="true"] .dot{background:var(--accent);}
+
+/* ===== Sections ===== */
+.section{padding:52px 22px;border-top:1px solid var(--line);}
+.section-head{margin-bottom:30px;max-width:62ch;}
+.section-kicker{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--green-500);margin-bottom:10px;}
+.section-head h2{font-size:28px;margin-bottom:10px;}
+.section-sub{font-size:15px;color:var(--muted);line-height:1.7;}
+
+/* ===== Projects ===== */
+.project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
+.project-card{
+  display:flex;flex-direction:column;
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 22px;box-shadow:var(--shadow-1);
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.project-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-2);border-color:var(--line-strong);}
+.tag{
+  display:inline-block;align-self:flex-start;
+  font-size:12px;font-weight:700;letter-spacing:.06em;
+  background:var(--mint-2);color:var(--green-700);
+  border:1px solid rgba(42,106,77,.2);
+  padding:5px 11px;border-radius:999px;margin-bottom:14px;
+}
+.project-card h3{font-size:19px;margin-bottom:10px;}
+.project-card > p{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:14px;}
+.meta{font-size:13px;color:var(--muted);margin-bottom:18px;}
+.meta li{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dashed var(--line);}
+.meta li:last-child{border-bottom:none;}
+.meta li b{color:var(--green-800);font-weight:700;}
+.project-card .btn-detail{margin-top:auto;align-self:flex-start;}
+
+/* ===== Modal ===== */
+.modal{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:20px;}
+.modal[hidden]{display:none;}
+.modal-backdrop{position:absolute;inset:0;background:rgba(12,35,26,.58);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);}
+.modal-panel{
+  position:relative;width:min(760px,100%);max-height:86vh;overflow-y:auto;
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow-2);padding:34px 32px 30px;
+}
+.modal-close{
+  position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;
+  border:1px solid var(--line-strong);background:var(--cream);color:var(--green-900);
+  font-size:22px;line-height:1;display:grid;place-items:center;
+}
+.modal-close:hover{background:var(--mint-2);}
+.modal-body h3{font-size:24px;margin-bottom:6px;padding-right:44px;}
+.modal-body .modal-tag{margin:0 0 18px;}
+.modal-body h4{font-size:16px;color:var(--green-700);margin:20px 0 8px;}
+.modal-body p{font-size:15px;color:#31463C;line-height:1.75;}
+.modal-body ul.plain{margin:6px 0 0;}
+.modal-body ul.plain li{position:relative;padding-left:18px;font-size:15px;color:#31463C;line-height:1.7;margin-bottom:5px;}
+.modal-body ul.plain li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;border-radius:50%;background:var(--mint);}
+.metric-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0 4px;}
+.metric{background:var(--mint-2);border:1px solid rgba(42,106,77,.16);border-radius:var(--radius-sm);padding:13px 14px;}
+.metric b{display:block;font-family:var(--font-display);font-size:22px;color:var(--green-800);line-height:1.2;}
+.metric span{font-size:12px;color:var(--muted);}
+
+/* ===== Skills ===== */
+.skills-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
+.skill-group{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow-1);}
+.skill-group h3{font-size:17px;margin-bottom:16px;display:flex;align-items:center;gap:9px;}
+.skill-group h3::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--green-500);display:inline-block;}
+.skill-row{margin-bottom:14px;}
+.skill-row:last-child{margin-bottom:0;}
+.skill-label{display:flex;justify-content:space-between;font-size:14px;color:var(--green-900);font-weight:600;margin-bottom:6px;}
+.skill-label span{color:var(--muted);font-weight:600;font-family:var(--font-mono);font-size:12px;}
+.bar{height:9px;border-radius:999px;background:var(--mint-2);overflow:hidden;border:1px solid rgba(42,106,77,.12);}
+.bar > i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--green-600),var(--green-500));}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+.chip{font-size:13px;font-weight:600;color:var(--green-700);background:var(--mint-2);border:1px solid rgba(42,106,77,.18);padding:6px 12px;border-radius:999px;}
+
+/* ===== Activities timeline ===== */
+.timeline{position:relative;padding-left:26px;}
+.timeline::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--mint),rgba(191,227,206,.25));}
+.tl-item{position:relative;padding:0 0 22px 0;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item::before{
+  content:"";position:absolute;left:-26px;top:6px;width:14px;height:14px;border-radius:50%;
+  background:var(--paper);border:3px solid var(--green-500);
+}
+.tl-date{font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;color:var(--green-600);font-weight:700;}
+.tl-item h3{font-size:17px;margin:4px 0 6px;}
+.tl-item p{font-size:15px;color:var(--muted);line-height:1.7;}
+
+/* ===== Contact ===== */
+.contact-card{
+  background:linear-gradient(135deg,var(--green-800) 0%,var(--green-700) 100%);
+  border-radius:var(--radius);padding:34px 32px;color:#EAF4EE;box-shadow:var(--shadow-2);
+  display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;
+}
+.contact-card h2{color:#FFFDF6;font-size:26px;margin-bottom:12px;}
+.contact-card p{font-size:15px;line-height:1.75;color:rgba(234,244,238,.86);}
+.contact-list{display:grid;gap:10px;}
+.contact-item{
+  background:rgba(255,253,247,.1);border:1px solid rgba(255,253,247,.22);
+  border-radius:var(--radius-sm);padding:12px 15px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.contact-item .k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(234,244,238,.72);min-width:74px;}
+.contact-item .v{font-size:15px;font-weight:700;color:#FFFDF6;word-break:break-all;}
+.contact-item a.v{color:#FFFDF6;}
+.copy-btn{
+  margin-left:auto;background:rgba(255,253,247,.16);color:#FFFDF6;border:1px solid rgba(255,253,247,.3);
+  padding:7px 14px;border-radius:999px;font-size:13px;font-weight:700;
+}
+.copy-btn:hover{background:rgba(255,253,247,.28);}
+
+/* ===== Footer ===== */
+.site-footer{padding:34px 22px 90px;text-align:center;}
+.notice{
+  display:inline-block;max-width:70ch;margin:0 auto 14px;
+  background:var(--accent-soft);border:1px solid rgba(192,133,54,.35);
+  color:#6E4A15;font-size:14px;line-height:1.7;padding:14px 18px;border-radius:var(--radius-sm);text-align:left;
+}
+.notice b{color:#5A3C0F;}
+.copyright{font-size:13px;color:var(--muted);}
+
+/* ===== Responsive ===== */
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:34px;}
+  .hero h1{font-size:32px;}
+  .hero-visual{order:2;max-width:560px;margin:0 auto;}
+  .project-grid{grid-template-columns:1fr 1fr;}
+  .contact-card{grid-template-columns:1fr;}
+}
+@media (max-width:760px){
+  .nav{
+    position:absolute;top:100%;left:0;right:0;
+    background:rgba(251,245,233,.98);border-bottom:1px solid var(--line);
+    box-shadow:var(--shadow-1);padding:10px 16px 16px;display:none;
+  }
+  .nav.open{display:block;}
+  .nav ul{flex-direction:column;align-items:stretch;gap:2px;}
+  .nav a{padding:12px 14px;border-radius:12px;}
+  .menu-toggle{display:inline-block;}
+  .project-grid{grid-template-columns:1fr;}
+  .skills-grid{grid-template-columns:1fr;}
+  .facts{grid-template-columns:1fr;}
+  .hero{padding-top:34px;}
+  .hero h1{font-size:28px;}
+  .section-head h2{font-size:24px;}
+  .metric-row{grid-template-columns:1fr;}
+  .modal-panel{padding:26px 20px 24px;}
+  .contact-card{padding:26px 22px;}
+  .motion-toggle{right:12px;bottom:12px;padding:10px 15px;font-size:13px;}
+  .site-footer{padding-bottom:96px;}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#about">본문으로 건너뛰기</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#about">CHARLES <span>PORTFOLIO</span></a>
+    <nav class="nav" id="primaryNav" aria-label="주요 메뉴">
+      <ul>
+        <li><a href="#about">소개</a></li>
+        <li><a href="#projects">프로젝트</a></li>
+        <li><a href="#skills">역량</a></li>
+        <li><a href="#activities">활동 기록</a></li>
+        <li><a href="#contact">연락처</a></li>
+      </ul>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="primaryNav">메뉴</button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ========== 소개 ========== -->
+  <section id="about" class="hero wrap" aria-labelledby="aboutTitle">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow">솔담대학교 경영정보학과 · 21세</p>
+        <h1 id="aboutTitle">데이터로 문제를 푸는 <em>찰스</em>입니다</h1>
+        <p class="lead">
+          안녕하세요, 찰스(Charles)입니다. 솔담대학교 경영정보학과에서 데이터 분석과 머신러닝을 공부하고 있으며,
+          분류 · 회귀 · 시계열 예측 과제를 직접 수행하며 모델링 전 과정을 경험했습니다.
+        </p>
+        <p class="lead">
+          최종 목표는 에너지 산업의 데이터를 다루는 분석가로 성장하는 것입니다.
+          현재는 모아빛에너지(Moabit Energy)를 지원 기업으로 두고 실무형 역량을 쌓고 있습니다.
+        </p>
+        <ul class="facts">
+          <li><b>전공</b>솔담대학교 경영정보학과</li>
+          <li><b>지원 기업</b>모아빛에너지 (Moabit Energy)</li>
+          <li><b>인턴 경험</b>엔비디아 (NVIDIA)</li>
+          <li><b>대회</b>별숲 데이터 챌린지</li>
+        </ul>
+        <div class="cta">
+          <a class="btn btn-primary" href="#projects">프로젝트 보기</a>
+          <a class="btn btn-ghost" href="#contact">연락하기</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="scene-motion" id="sceneMotion">
+          <svg viewBox="0 0 620 420" role="img" aria-labelledby="sceneTitle sceneDesc" xmlns="http://www.w3.org/2000/svg">
+            <title id="sceneTitle">데이터 스튜디오 일러스트</title>
+            <desc id="sceneDesc">듀얼 모니터 앞에서 작업하는 둥근 캐릭터, 나무 책상, 화분, 머그컵이 놓인 데이터 작업실을 부드러운 색과 그림자로 표현한 삽화입니다.</desc>
+            <defs>
+              <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#FFFDF6"/>
+                <stop offset="1" stop-color="#EDF6EE"/>
+              </linearGradient>
+              <linearGradient id="deskGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#E7C499"/>
+                <stop offset="1" stop-color="#CDA06A"/>
+              </linearGradient>
+              <linearGradient id="deskFront" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#BE9059"/>
+                <stop offset="1" stop-color="#A0743F"/>
+              </linearGradient>
+              <linearGradient id="screenGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#FFFDF7"/>
+                <stop offset="1" stop-color="#E9F3EC"/>
+              </linearGradient>
+              <linearGradient id="potGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#F1CBA4"/>
+                <stop offset="1" stop-color="#D9A474"/>
+              </linearGradient>
+              <linearGradient id="mugGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#FBF1DD"/>
+                <stop offset="1" stop-color="#EBD9B8"/>
+              </linearGradient>
+            </defs>
+
+            <!-- background -->
+            <rect x="8" y="8" width="604" height="404" rx="34" fill="url(#bgGrad)"/>
+            <circle cx="92" cy="78" r="42" fill="#DCEEE1" opacity="0.75"/>
+            <circle cx="546" cy="330" r="54" fill="#F7E9D2" opacity="0.85"/>
+            <circle cx="520" cy="86" r="16" fill="#CFE7D8" opacity="0.8"/>
+            <circle cx="120" cy="330" r="10" fill="#F0D9B4" opacity="0.8"/>
+
+            <!-- floor shadow under desk -->
+            <ellipse cx="310" cy="360" rx="242" ry="16" fill="#123024" opacity="0.10"/>
+
+            <!-- desk -->
+            <rect x="52" y="312" width="516" height="30" rx="8" fill="url(#deskFront)"/>
+            <rect x="44" y="294" width="532" height="22" rx="11" fill="url(#deskGrad)"/>
+            <path d="M76 305 H544" stroke="#B9834C" stroke-width="2" opacity="0.35" stroke-linecap="round"/>
+            <path d="M120 316 H500" stroke="#8E6533" stroke-width="2" opacity="0.25" stroke-linecap="round"/>
+            <rect x="96" y="340" width="20" height="44" rx="8" fill="#A0743F"/>
+            <rect x="504" y="340" width="20" height="44" rx="8" fill="#A0743F"/>
+
+            <!-- character: body -->
+            <path d="M74 300 C74 262 100 244 118 244 C136 244 162 262 162 300 Z" fill="#8CCFB0"/>
+            <path d="M74 300 C74 262 100 244 118 244 C136 244 162 262 162 300 Z" fill="#ffffff" opacity="0.10"/>
+            <!-- arms -->
+            <path d="M82 268 C64 276 56 286 58 296" stroke="#8CCFB0" stroke-width="17" stroke-linecap="round" fill="none"/>
+            <path d="M154 268 C172 276 182 286 180 296" stroke="#8CCFB0" stroke-width="17" stroke-linecap="round" fill="none"/>
+            <circle cx="57" cy="297" r="9" fill="#F6D9BE"/>
+            <circle cx="181" cy="297" r="9" fill="#F6D9BE"/>
+            <!-- neck & head -->
+            <rect x="110" y="228" width="16" height="20" rx="8" fill="#EDC6A5"/>
+            <circle cx="118" cy="204" r="34" fill="#F6D9BE"/>
+            <circle cx="86" cy="208" r="8" fill="#F6D9BE"/>
+            <circle cx="150" cy="208" r="8" fill="#F6D9BE"/>
+            <!-- hair -->
+            <path d="M84 196 C84 168 100 156 118 156 C136 156 152 168 152 196 C152 186 144 178 136 178 C128 178 124 172 118 172 C112 172 108 178 100 178 C92 178 84 186 84 196 Z" fill="#4A3A2C"/>
+            <!-- face -->
+            <circle cx="106" cy="206" r="3.6" fill="#3A2C21"/>
+            <circle cx="130" cy="206" r="3.6" fill="#3A2C21"/>
+            <circle cx="107.3" cy="204.7" r="1.2" fill="#FFFDF7"/>
+            <circle cx="131.3" cy="204.7" r="1.2" fill="#FFFDF7"/>
+            <path d="M112 214 Q118 219 124 214" stroke="#C97D5A" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+            <ellipse cx="97" cy="215" rx="7" ry="4.4" fill="#F2B39B" opacity="0.65"/>
+            <ellipse cx="139" cy="215" rx="7" ry="4.4" fill="#F2B39B" opacity="0.65"/>
+
+            <!-- left monitor -->
+            <ellipse cx="258" cy="292" rx="46" ry="8" fill="#123024" opacity="0.10"/>
+            <rect x="251" y="248" width="14" height="42" rx="6" fill="#2F6E4E"/>
+            <rect x="224" y="282" width="68" height="12" rx="6" fill="#24593F"/>
+            <rect x="180" y="128" width="158" height="122" rx="15" fill="#1B4A38"/>
+            <rect x="190" y="138" width="138" height="102" rx="9" fill="url(#screenGrad)"/>
+            <rect x="202" y="196" width="16" height="34" rx="4" fill="#BFE3CE"/>
+            <rect x="224" y="178" width="16" height="52" rx="4" fill="#7FC8A9"/>
+            <rect x="246" y="188" width="16" height="42" rx="4" fill="#4C9A72"/>
+            <rect x="268" y="166" width="16" height="64" rx="4" fill="#2F6E4E"/>
+            <rect x="292" y="182" width="16" height="48" rx="4" fill="#7FC8A9"/>
+            <path d="M200 232 H320" stroke="#2F6E4E" stroke-width="2.4" opacity="0.7" stroke-linecap="round"/>
+            <circle cx="312" cy="152" r="4" fill="#8CCFB0"/>
+
+            <!-- right monitor -->
+            <ellipse cx="458" cy="292" rx="46" ry="8" fill="#123024" opacity="0.10"/>
+            <rect x="451" y="240" width="14" height="50" rx="6" fill="#2F6E4E"/>
+            <rect x="424" y="282" width="68" height="12" rx="6" fill="#24593F"/>
+            <rect x="380" y="120" width="158" height="122" rx="15" fill="#1B4A38"/>
+            <rect x="390" y="130" width="138" height="102" rx="9" fill="url(#screenGrad)"/>
+            <rect x="402" y="142" width="58" height="9" rx="4.5" fill="#4C9A72"/>
+            <rect x="402" y="157" width="92" height="9" rx="4.5" fill="#BFE3CE"/>
+            <rect x="402" y="172" width="74" height="9" rx="4.5" fill="#BFE3CE"/>
+            <rect x="402" y="187" width="104" height="9" rx="4.5" fill="#7FC8A9"/>
+            <path d="M402 214 L420 204 L438 210 L456 194 L474 200 L492 182 L514 188" stroke="#2F6E4E" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="472" cy="142" r="4" fill="#8CCFB0"/>
+
+            <!-- mug -->
+            <path d="M330 300 V270 H372 V300 A10 10 0 0 1 362 310 H340 A10 10 0 0 1 330 300 Z" fill="url(#mugGrad)" stroke="#D9BF95" stroke-width="1.6"/>
+            <path d="M372 276 C384 276 384 294 372 294" stroke="#D9BF95" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <ellipse cx="351" cy="270" rx="21" ry="6" fill="#FFFDF7" stroke="#D9BF95" stroke-width="1.6"/>
+            <path d="M344 258 C340 252 348 250 345 244" stroke="#CFE7D8" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.9"/>
+            <path d="M356 256 C352 249 360 247 357 241" stroke="#CFE7D8" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.9"/>
+
+            <!-- plant -->
+            <ellipse cx="548" cy="302" rx="30" ry="7" fill="#123024" opacity="0.10"/>
+            <path d="M524 302 L572 302 L565 346 L531 346 Z" fill="url(#potGrad)"/>
+            <rect x="521" y="294" width="54" height="12" rx="6" fill="#E4B489"/>
+            <path d="M548 294 C548 268 534 262 524 258 C534 250 546 254 548 266 Z" fill="#5FAE84"/>
+            <path d="M548 294 C548 264 562 258 574 252 C576 264 566 276 548 288 Z" fill="#7FC8A9"/>
+            <path d="M548 292 C540 272 542 258 548 244 C556 258 556 276 548 292 Z" fill="#3C8A63"/>
+
+            <!-- desk lamp glow accent -->
+            <circle cx="196" cy="112" r="5" fill="#F0D9B4"/>
+          </svg>
+        </div>
+        <p class="scene-caption">
+          <b>일러스트 설명 —</b> 듀얼 모니터로 분류 · 회귀 · 시계열 모델을 동시에 학습하는 데이터 작업실을 표현했습니다.
+          왼쪽 화면은 분류 모델의 클래스별 결과 막대, 오른쪽 화면은 시계열 추세 그래프와 코드입니다.
+          책 위의 화분과 머그컵은 긴 분석 시간을 버티게 하는 작은 루틴을, 둥근 캐릭터는 데이터를 어렵지 않게 풀어내는
+          분석가의 모습을 담았습니다.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 프로젝트 ========== -->
+  <section id="projects" class="section wrap" aria-labelledby="projectsTitle">
+    <div class="section-head">
+      <p class="section-kicker">Projects</p>
+      <h2 id="projectsTitle">대표 프로젝트 3개</h2>
+      <p class="section-sub">분류 · 회귀 · 시계열 예측 과제를 각각 처음부터 끝까지 수행했습니다. 각 카드의 ‘자세히 보기’를 누르면 문제 정의부터 결과까지 전체 내용을 볼 수 있습니다.</p>
+    </div>
+
+    <div class="project-grid">
+      <!-- P1 -->
+      <article class="project-card">
+        <span class="tag">분류 (Classification)</span>
+        <h3>통신사 고객 이탈 예측 모델</h3>
+        <p>10만 건의 고객 로그에서 이탈 징후를 찾아내는 이진 분류 모델을 만들고, 불균형 데이터를 보정했습니다.</p>
+        <ul class="meta">
+          <li>기간 <b>2025.03 – 2025.06</b></li>
+          <li>역할 <b>데이터 전처리 · 모델링</b></li>
+          <li>핵심 지표 <b>F1 0.81</b></li>
+        </ul>
+        <button class="btn btn-detail" type="button" data-detail="p1" aria-haspopup="dialog">자세히 보기</button>
+        <div class="project-detail" id="detail-p1" data-detail-id="p1" hidden>
+          <span class="tag modal-tag">분류 (Classification)</span>
+          <h3>통신사 고객 이탈 예측 모델</h3>
+          <h4>문제 정의</h4>
+          <p>구독형 서비스에서 이탈 고객을 사전에 식별하지 못하면 유지 비용이 급격히 늘어납니다. 이탈 고객 비율이 전체의 약 7%에 불과한 불균형 데이터에서, 이탈 가능성이 높은 고객을 놓치지 않고 찾아내는 것이 목표였습니다.</p>
+          <h4>접근 방법</h4>
+          <ul class="plain">
+            <li>결측치와 이상치를 정리하고, 계약 기간·요금제·이용량 지표를 파생 변수로 생성</li>
+            <li>클래스 불균형을 해결하기 위해 SMOTE 오버샘플링과 클래스 가중치를 비교 실험</li>
+            <li>로지스틱 회귀 · 랜덤 포레스트 · LightGBM을 교차검증으로 비교하고 LightGBM을 최종 선택</li>
+            <li>SHAP 값으로 이탈에 영향을 주는 상위 변수를 해석하고 결과를 보고서로 정리</li>
+          </ul>
+          <h4>결과</h4>
+          <div class="metric-row">
+            <div class="metric"><b>0.81</b><span>F1 점수</span></div>
+            <div class="metric"><b>0.87</b><span>ROC-AUC</span></div>
+            <div class="metric"><b>-21%</b><span>오탐 감소</span></div>
+          </div>
+          <h4>배운 점</h4>
+          <p>정확도만 보면 불균형 데이터의 함정에 빠진다는 것을 확인했고, 지표 선택과 임계값 조정이 실제 활용도에 얼마나 큰 영향을 주는지 배웠습니다.</p>
+        </div>
+      </article>
+
+      <!-- P2 -->
+      <article class="project-card">
+        <span class="tag">회귀 (Regression)</span>
+        <h3>건물 에너지 사용량 예측 모델</h3>
+        <p>건물 특성과 기상 데이터로 월별 에너지 사용량을 예측하고, 오차를 18% 줄였습니다.</p>
+        <ul class="meta">
+          <li>기간 <b>2025.03 – 2025.06</b></li>
+          <li>역할 <b>특성 설계 · 회귀 모델링</b></li>
+          <li>핵심 지표 <b>RMSE -18%</b></li>
+        </ul>
+        <button class="btn btn-detail" type="button" data-detail="p2" aria-haspopup="dialog">자세히 보기</button>
+        <div class="project-detail" id="detail-p2" data-detail-id="p2" hidden>
+          <span class="tag modal-tag">회귀 (Regression)</span>
+          <h3>건물 에너지 사용량 예측 모델</h3>
+          <h4>문제 정의</h4>
+          <p>에너지 비용을 줄이려면 어느 건물이 얼마나 쓸지 미리 알아야 합니다. 건물 면적, 사용 연수, 단열 등급, 월평균 기온을 입력으로 월별 에너지 사용량을 예측하는 회귀 모델을 설계했습니다.</p>
+          <h4>접근 방법</h4>
+          <ul class="plain">
+            <li>연속형 변수의 분포를 확인해 로그 변환과 표준화를 적용</li>
+            <li>기온 · 면적 상호작용 항과 계절 더미 변수를 추가해 특성 확장</li>
+            <li>릿지 회귀 · 그래디언트 부스팅 · XGBoost를 비교하고 XGBoost를 최종 선택</li>
+            <li>잔차 분석으로 과소 예측 구간을 찾아 모델을 재보정</li>
+          </ul>
+          <h4>결과</h4>
+          <div class="metric-row">
+            <div class="metric"><b>-18%</b><span>RMSE 개선</span></div>
+            <div class="metric"><b>0.91</b><span>결정계수 R²</span></div>
+            <div class="metric"><b>3.4%</b><span>평균 오차율</span></div>
+          </div>
+          <h4>배운 점</h4>
+          <p>모델 성능의 절반은 특성 설계에서 나온다는 것을 체감했습니다. 특히 기온과 면적의 상호작용 항이 예측력을 크게 끌어올렸습니다.</p>
+        </div>
+      </article>
+
+      <!-- P3 -->
+      <article class="project-card">
+        <span class="tag">시계열 예측 (Time Series)</span>
+        <h3>시간대별 전력 수요 예측 모델</h3>
+        <p>과거 전력 사용 패턴과 요일·계절 요인을 반영해 24시간 뒤 전력 수요를 예측했습니다.</p>
+        <ul class="meta">
+          <li>기간 <b>2025.07 – 2025.09</b></li>
+          <li>역할 <b>시계열 분석 · 앙상블</b></li>
+          <li>핵심 지표 <b>MAPE 4.2%</b></li>
+        </ul>
+        <button class="btn btn-detail" type="button" data-detail="p3" aria-haspopup="dialog">자세히 보기</button>
+        <div class="project-detail" id="detail-p3" data-detail-id="p3" hidden>
+          <span class="tag modal-tag">시계열 예측 (Time Series)</span>
+          <h3>시간대별 전력 수요 예측 모델</h3>
+          <h4>문제 정의</h4>
+          <p>전력 수요는 시간대·요일·계절에 따라 크게 달라지며, 예측을 틀리면 공급 비용이 바로 늘어납니다. 1시간 단위 과거 데이터를 이용해 다음 24시간 수요를 예측하는 모델을 만들었습니다.</p>
+          <h4>접근 방법</h4>
+          <ul class="plain">
+            <li>결측 구간을 보간하고 이상 사용량을 탐지해 정제</li>
+            <li>요일·시간대·공휴일 더미와 24시간 · 168시간 지연 변수 생성</li>
+            <li>Prophet으로 추세와 계절성을 분해하고 LSTM으로 비선형 패턴을 학습</li>
+            <li>두 모델의 예측값을 가중 평균으로 결합해 최종 앙상블 구성</li>
+          </ul>
+          <h4>결과</h4>
+          <div class="metric-row">
+            <div class="metric"><b>4.2%</b><span>MAPE</span></div>
+            <div class="metric"><b>24시간</b><span>예측 지평</span></div>
+            <div class="metric"><b>+9%</b><span>단일 모델 대비</span></div>
+          </div>
+          <h4>배운 점</h4>
+          <p>시계열에서는 검증 구간을 어떻게 자르느냐가 성능 평가를 좌우한다는 점을 배웠고, 단일 모델보다 앙상블이 안정적이라는 것을 확인했습니다.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========== 역량 ========== -->
+  <section id="skills" class="section wrap" aria-labelledby="skillsTitle">
+    <div class="section-head">
+      <p class="section-kicker">Skills</p>
+      <h2 id="skillsTitle">역량 및 보유 기술</h2>
+      <p class="section-sub">데이터 전처리부터 모델링, 시각화, 결과 공유까지 한 흐름으로 수행할 수 있습니다. 막대는 스스로 평가한 숙련도입니다.</p>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>언어 · 데이터 처리</h3>
+        <div class="skill-row">
+          <div class="skill-label">Python <span>상</span></div>
+          <div class="bar"><i style="width:88%"></i></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label">SQL <span>중상</span></div>
+          <div class="bar"><i style="width:78%"></i></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label">R <span>중</span></div>
+          <div class="bar"><i style="width:60%"></i></div>
+        </div>
+        <div class="chips">
+          <span class="chip">pandas</span><span class="chip">NumPy</span><span class="chip">전처리</span><span class="chip">결측치 처리</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>머신러닝 · 모델링</h3>
+        <div class="skill-row">
+          <div class="skill-label">scikit-learn <span>상</span></div>
+          <div class="bar"><i style="width:85%"></i></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label">XGBoost / LightGBM <span>중상</span></div>
+          <div class="bar"><i style="width:80%"></i></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label">PyTorch (LSTM) <span>중</span></div>
+          <div class="bar"><i style="width:65%"></i></div>
+        </div>
+        <div class="chips">
+          <span class="chip">분류</span><span class="chip">회귀</span><span class="chip">시계열</span><span class="chip">교차검증</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>시각화 · 리포팅</h3>
+        <div class="skill-row">
+          <div class="skill-label">Matplotlib / Seaborn <span>중상</span></div>
+          <div class="bar"><i style="width:78%"></i></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label">Tableau <span>중</span></div>
+          <div class="bar"><i style="width:62%"></i></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label">보고서 · 발표 <span>상</span></div>
+          <div class="bar"><i style="width:82%"></i></div>
+        </div>
+        <div class="chips">
+          <span class="chip">대시보드</span><span class="chip">시각화 설계</span><span class="chip">SHAP 해석</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>협업 · 도구</h3>
+        <div class="skill-row">
+          <div class="skill-label">Git / GitHub <span>중상</span></div>
+          <div class="bar"><i style="width:76%"></i></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label">Docker (기초) <span>중하</span></div>
+          <div class="bar"><i style="width:50%"></i></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label">팀 협업 · 문서화 <span>상</span></div>
+          <div class="bar"><i style="width:84%"></i></div>
+        </div>
+        <div class="chips">
+          <span class="chip">Notion</span><span class="chip">Jupyter</span><span class="chip">Airflow 기초</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 활동 기록 ========== -->
+  <section id="activities" class="section wrap" aria-labelledby="activitiesTitle">
+    <div class="section-head">
+      <p class="section-kicker">Activities</p>
+      <h2 id="activitiesTitle">활동 기록</h2>
+      <p class="section-sub">인턴십, 데이터 대회, 학회 활동을 시간 순으로 정리했습니다.</p>
+    </div>
+
+    <ol class="timeline">
+      <li class="tl-item">
+        <p class="tl-date">2025.07 – 2025.09</p>
+        <h3>엔비디아 (NVIDIA) 데이터 분석 인턴십</h3>
+        <p>데이터 분석 인턴으로 참여해 사용 로그 데이터를 정제하고, 대시보드 지표를 설계하는 업무를 보조했습니다. 실무 데이터의 품질 관리 절차를 경험했습니다.</p>
+      </li>
+      <li class="tl-item">
+        <p class="tl-date">2025.05</p>
+        <h3>별숲 데이터 챌린지 — 우수상</h3>
+        <p>시계열 트랙에 참가해 시간대별 수요 예측 문제를 풀었고, 앙상블 모델로 본선에 진출해 우수상을 받았습니다.</p>
+      </li>
+      <li class="tl-item">
+        <p class="tl-date">2024.03 – 2025.02</p>
+        <h3>솔담대학교 데이터분석 학회 부회장</h3>
+        <p>학회 부회장으로 스터디를 운영하고, 신입 부원 대상 파이썬 · pandas 기초 세션을 진행했습니다.</p>
+      </li>
+      <li class="tl-item">
+        <p class="tl-date">2024.09</p>
+        <h3>솔담대학교 데이터 해커톤 — 장려상</h3>
+        <p>48시간 해커톤에서 지역 상권 데이터를 분석해 매출 예측 모델을 발표하고 장려상을 받았습니다.</p>
+      </li>
+      <li class="tl-item">
+        <p class="tl-date">2024.01</p>
+        <h3>SQLD 자격 취득</h3>
+        <p>데이터 조회와 모델링의 기본기를 다지기 위해 SQL 개발자 자격을 취득했습니다.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ========== 연락처 ========== -->
+  <section id="contact" class="section wrap" aria-labelledby="contactTitle">
+    <div class="contact-card">
+      <div>
+        <p class="section-kicker" style="color:#BFE3CE;">Contact</p>
+        <h2 id="contactTitle">연락처</h2>
+        <p>채용 · 협업 관련 문의는 아래 이메일로 연락 주시면 확인 후 답변드리겠습니다. 지원 기업은 모아빛에너지(Moabit Energy)이며, 에너지 데이터 분석 직무를 목표로 하고 있습니다.</p>
+      </div>
+      <div class="contact-list">
+        <div class="contact-item">
+          <span class="k">Email</span>
+          <a class="v" href="mailto:seoha@example.com">seoha@example.com</a>
+          <button class="copy-btn" id="copyEmail" type="button" data-email="seoha@example.com">복사</button>
+        </div>
+        <div class="contact-item">
+          <span class="k">GitHub</span>
+          <span class="v">github.com/seoha-example</span>
+        </div>
+        <div class="contact-item">
+          <span class="k">Location</span>
+          <span class="v">서울, 대한민국 (가상)</span>
+        </div>
+        <div class="contact-item">
+          <span class="k">Target</span>
+          <span class="v">모아빛에너지 · 데이터 분석</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p class="notice">
+    <b>안내 —</b> 본 포트폴리오에 등장하는 인물, 학교(솔담대학교), 기업(모아빛에너지 · 엔비디아), 대회(별숲 데이터 챌린지),
+    프로젝트 및 모든 경력·활동 정보는 <b>가상으로 구성된 예시</b>이며 실제 인물·기관·사건과 무관합니다.
+    연락처 또한 예시용 주소(seoha@example.com)입니다.
+  </p>
+  <p class="copyright">© 2026 Charles (가상 포트폴리오) · HTML · CSS · JavaScript 단일 파일</p>
+</footer>
+
+<button class="motion-toggle" id="motionToggle" type="button" aria-pressed="false">
+  <span class="dot" aria-hidden="true"></span><span id="motionLabel">동작 일시정지</span>
+</button>
+
+<!-- ========== 프로젝트 상세 보기 ========== -->
+<div class="modal" id="projectModal" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" type="button" data-close aria-label="닫기">&times;</button>
+    <div class="modal-body" id="modalBody">
+      <h3 id="modalTitle">프로젝트 상세</h3>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============================================================
+     1) 메뉴 (모바일 토글 + 스크롤 활성 표시)
+     ============================================================ */
+  var menuToggle = document.getElementById("menuToggle");
+  var nav = document.getElementById("primaryNav");
+  var navLinks = Array.prototype.slice.call(nav.querySelectorAll("a"));
+
+  menuToggle.addEventListener("click", function () {
+    var open = nav.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+
+  navLinks.forEach(function (link) {
+    link.addEventListener("click", function () {
+      nav.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  var sections = navLinks
+    .map(function (l) { return document.querySelector(l.getAttribute("href")); })
+    .filter(Boolean);
+
+  if ("IntersectionObserver" in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach(function (l) {
+          l.classList.toggle("is-active", l.getAttribute("href") === "#" + entry.target.id);
+        });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+    sections.forEach(function (s) { observer.observe(s); });
+  }
+
+  /* ============================================================
+     2) 프로젝트 상세 보기 (모달)
+     ============================================================ */
+  var modal = document.getElementById("projectModal");
+  var modalBody = document.getElementById("modalBody");
+  var closeBtn = modal.querySelector(".modal-close");
+  var lastFocused = null;
+
+  var details = {};
+  document.querySelectorAll(".project-detail").forEach(function (d) {
+    details[d.getAttribute("data-detail-id")] = d.innerHTML;
+  });
+
+  function openModal(id) {
+    if (!details[id]) return;
+    modalBody.innerHTML = details[id];
+    var injectedTitle = modalBody.querySelector("h3");
+    if (injectedTitle) injectedTitle.id = "modalTitle";
+    modal.hidden = false;
+    document.body.classList.add("no-scroll");
+    lastFocused = document.activeElement;
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    if (modal.hidden) return;
+    modal.hidden = true;
+    document.body.classList.remove("no-scroll");
+    modalBody.innerHTML = '<h3 id="modalTitle">프로젝트 상세</h3>';
+    if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+  }
+
+  document.querySelectorAll("[data-detail]").forEach(function (btn) {
+    btn.addEventListener("click", function () { openModal(btn.getAttribute("data-detail")); });
+  });
+  modal.querySelectorAll("[data-close]").forEach(function (el) {
+    el.addEventListener("click", closeModal);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeModal();
+  });
+
+  /* 이메일 복사 */
+  var copyBtn = document.getElementById("copyEmail");
+  if (copyBtn) {
+    copyBtn.addEventListener("click", function () {
+      var email = copyBtn.getAttribute("data-email");
+      var done = function () {
+        copyBtn.textContent = "복사됨";
+        window.setTimeout(function () { copyBtn.textContent = "복사"; }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(done, done);
+      } else {
+        var tmp = document.createElement("textarea");
+        tmp.value = email;
+        document.body.appendChild(tmp);
+        tmp.select();
+        try { document.execCommand("copy"); } catch (err) {}
+        document.body.removeChild(tmp);
+        done();
+      }
+    });
+  }
+
+  /* ============================================================
+     3) .scene-motion 동적 효과
+        - 7초 주기 ±5px 부유
+        - 데스크톱: 마우스 추적, 최대 4도 기울기
+        - 스크롤: 최대 20px 위로 이동
+        - requestAnimationFrame 시간값 기반
+        - 터치 환경: 마우스 추적 끔
+        - 일시정지 버튼 / prefers-reduced-motion / 탭 숨김 시 정지
+     ============================================================ */
+  var scene = document.getElementById("sceneMotion");
+  var motionToggle = document.getElementById("motionToggle");
+  var motionLabel = document.getElementById("motionLabel");
+  var reduceQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var isTouchEnv = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+
+  var FLOAT_CYCLE = 7000;   // ms
+  var FLOAT_AMP   = 5;      // px
+  var SCROLL_MAX  = 20;     // px (위로)
+  var MAX_TILT    = 4;      // deg
+
+  var paused = false;
+  var tiltTargetX = 0, tiltTargetY = 0;
+  var tiltX = 0, tiltY = 0;
+  var scrollShift = 0;
+  var startTime = performance.now();  // 부유 위상 시작
+  var stopTime  = performance.now();  // 정지 구간 보정용
+  var running   = null;
+
+  /* 스크롤: 최대 20px 위로 */
+  function readScroll() {
+    scrollShift = Math.min((window.pageYOffset || document.documentElement.scrollTop || 0) * 0.15, SCROLL_MAX);
+  }
+  window.addEventListener("scroll", readScroll, { passive: true });
+  readScroll();
+
+  /* 마우스 추적: 데스크톱만 */
+  if (!isTouchEnv) {
+    window.addEventListener("mousemove", function (e) {
+      if (paused || document.hidden || reduceQuery.matches) return;
+      var nx = (e.clientX / window.innerWidth) * 2 - 1;   // -1 ~ 1
+      var ny = (e.clientY / window.innerHeight) * 2 - 1;
+      tiltTargetY = nx * MAX_TILT;    // 좌우 → rotateY
+      tiltTargetX = -ny * MAX_TILT;   // 상하 → rotateX
+    }, { passive: true });
+    document.addEventListener("mouseleave", function () {
+      tiltTargetX = 0;
+      tiltTargetY = 0;
+    });
+  }
+
+  /* 실행 여부 판정: 정지 버튼 / 탭 숨김 / 모션 최소화 */
+  function budget(now) {
+    var should = !paused && !document.hidden && !reduceQuery.matches;
+    if (should === running) return;
+    if (should) {
+      startTime += now - stopTime;   // 정지했던 시간만큼 위상 이동
+    } else {
+      stopTime = now;
+    }
+    running = should;
+  }
+
+  function render(now) {
+    var elapsed = now - startTime;
+    var floatY = Math.sin((elapsed / FLOAT_CYCLE) * Math.PI * 2) * FLOAT_AMP;
+    tiltX += (tiltTargetX - tiltX) * 0.09;
+    tiltY += (tiltTargetY - tiltY) * 0.09;
+    scene.style.transform =
+      "translate3d(0," + (floatY - scrollShift).toFixed(2) + "px,0)" +
+      " rotateX(" + tiltX.toFixed(2) + "deg)" +
+      " rotateY(" + tiltY.toFixed(2) + "deg)";
+  }
+
+  function loop(now) {
+    budget(now);
+    if (running) render(now);
+    window.requestAnimationFrame(loop);
+  }
+  window.requestAnimationFrame(loop);
+
+  /* 일시정지 / 재생 버튼 */
+  motionToggle.addEventListener("click", function () {
+    paused = !paused;
+    motionToggle.setAttribute("aria-pressed", paused ? "true" : "false");
+    motionLabel.textContent = paused ? "동작 재생" : "동작 일시정지";
+  });
+
+  /* prefers-reduced-motion: 사용자가 모션 최소화를 원하면 처음부터 정지 상태로 안내 */
+  function syncReduceMotion() {
+    if (reduceQuery.matches) {
+      paused = true;
+      motionToggle.setAttribute("aria-pressed", "true");
+      motionLabel.textContent = "모션 최소화 설정됨";
+      scene.style.transform = "translate3d(0,0,0)";
+    }
+  }
+  syncReduceMotion();
+  if (typeof reduceQuery.addEventListener === "function") {
+    reduceQuery.addEventListener("change", syncReduceMotion);
+  } else if (typeof reduceQuery.addListener === "function") {
+    reduceQuery.addListener(syncReduceMotion);
+  }
+})();
+</script>
+</body>
+</html>
